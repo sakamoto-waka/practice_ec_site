@@ -25,7 +25,7 @@ before_action :customer_state, only: [:create]
     @customer = Customer.find_by(email: params[:customer][:email])
     # アカウントを取得できなければ（ユーザーがいなければ）そのままreturn
     return unless @customer
-    unless @customer.valid_password?(params[:customer][:password]) && !@customer.is_deleted
+    if !@customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
         redirect_to new_customer_registration_path
     end
   end
