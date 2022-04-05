@@ -27,7 +27,6 @@ before_action :customer_state, only: [:create]
     return unless @customer
     if @customer.valid_password?(params[:customer][:password]) && !@customer.is_deleted　
         redirect_to public_signup_path
-
     end
   end
   
